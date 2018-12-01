@@ -247,7 +247,69 @@
     <div class="container-fluid mt--7">
       
       @yield('content')
-      @include('flash')
+     @if ($message = Session::get('success'))
+
+<div class="alert alert-success alert-block">
+
+  <button type="button" class="close" data-dismiss="alert">×</button> 
+
+        <strong>{{ $message }}</strong>
+
+</div>
+
+@endif
+
+
+@if ($message = Session::get('error'))
+
+<div class="alert alert-danger alert-block">
+
+  <button type="button" class="close" data-dismiss="alert">×</button> 
+
+        <strong>{{ $message }}</strong>
+
+</div>
+
+@endif
+
+
+@if ($message = Session::get('warning'))
+
+<div class="alert alert-warning alert-block">
+
+  <button type="button" class="close" data-dismiss="alert">×</button> 
+
+  <strong>{{ $message }}</strong>
+
+</div>
+
+@endif
+
+
+@if ($message = Session::get('info'))
+
+<div class="alert alert-info alert-block">
+
+  <button type="button" class="close" data-dismiss="alert">×</button> 
+
+  <strong>{{ $message }}</strong>
+
+</div>
+
+@endif
+
+
+@if ($errors->any())
+
+<div class="alert alert-danger">
+
+  <button type="button" class="close" data-dismiss="alert">×</button> 
+
+  Please check the form below for errors
+
+</div>
+
+@endif
        
       
       <!-- Footer -->
@@ -274,4 +336,7 @@
   <script src="plugins/chart.js/dist/Chart.min.js"></script>
   <script src="plugins/chart.js/dist/Chart.extension.js"></script>
   <!-- Argon JS -->
-  <script src="plugins/assets/js/argon.js?v=1.0.0"></sc
+  <script src="plugins/assets/js/argon.js?v=1.0.0"></script>
+</body>
+
+</html>

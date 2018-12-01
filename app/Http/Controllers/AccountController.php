@@ -66,11 +66,15 @@ class AccountController extends Controller
     				$beneficiary->transaction_id=$transaction->id;
     				$beneficiary->user_id=$destinationUser->id;
     				$beneficiary->save();
-    				flashy()->info('Welcome Back To Appdividend');
+    				return redirect()->route('home')->with('success','El dinero fue enviado Exitosamente!');
 
+    			}elseif ($destinationUser==null) {
+    				return redirect()->route('home')->with('error','Usuario de destino no encontrado!');
+    			}elseif ($destinationUser!=null && $user->available_money<$request['value']) {
+    				return redirect()->route('home')->with('error','Fondos insuficientes!');
     			}
 
-    			return view('board.transactions.send')->with(['user'=>$user]);
+    			//return view('board.transactions.send')->with(['user'=>$user]);
     			break;
     		case 'Recargar':
     			$user->available_money=$user->available_money+$request['value'];
@@ -80,7 +84,8 @@ class AccountController extends Controller
     			$transaction->value=$request['value'];
     			$transaction->origin_user_id=$user->id;
     			$transaction->save();
-    			flashy()->success('El dinero ha sido recargado exitosamente!');
+    			return redirect()->route('home')->with('success','El dinero fue recargado Exitosamente!');
+    			
     			return view('board.transactions.recharge')->with(['user'=>$user]);
     			break;
     		
