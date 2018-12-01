@@ -71,10 +71,17 @@
               <span>Support</span>
             </a>
             <div class="dropdown-divider"></div>
-            <a href="#!" class="dropdown-item">
-              <i class="ni ni-user-run"></i>
-              <span>Logout</span>
-            </a>
+            
+             <a class="dropdown-item" href="{{ route('logout') }}"
+                     onclick="event.preventDefault();
+                             document.getElementById('logout-form').submit();">
+                       <<i class="ni ni-user-run"></i>
+                       <p>Cerrar Sesion</p>
+                       </a>
+
+                       <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                         {{ csrf_field() }}
+                         </form>
           </div>
         </li>
       </ul>
@@ -222,10 +229,16 @@
                 <span>Support</span>
               </a>
               <div class="dropdown-divider"></div>
-              <a href="#!" class="dropdown-item">
-                <i class="ni ni-user-run"></i>
-                <span>Logout</span>
-              </a>
+              <a class="dropdown-item" href="{{ route('logout') }}"
+                     onclick="event.preventDefault();
+                             document.getElementById('logout-form').submit();">
+                       <<i class="ni ni-user-run"></i>
+                       <p>Cerrar Sesion</p>
+                       </a>
+
+                       <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                         {{ csrf_field() }}
+                         </form>
             </div>
           </li>
         </ul>
@@ -246,7 +259,7 @@
     <!-- Page content -->
     <div class="container-fluid mt--7">
       
-      @yield('content')
+      
      @if ($message = Session::get('success'))
 
 <div class="alert alert-success alert-block">
@@ -310,7 +323,7 @@
 </div>
 
 @endif
-       
+ @yield('content')      
       
       <!-- Footer -->
      

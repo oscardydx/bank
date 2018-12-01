@@ -86,7 +86,38 @@ class AccountController extends Controller
     			$transaction->save();
     			return redirect()->route('home')->with('success','El dinero fue recargado Exitosamente!');
     			
-    			return view('board.transactions.recharge')->with(['user'=>$user]);
+    			
+    			break;
+    		case 'Agregar':
+    		if ($request['value']<=$user->available_money) {
+    			$user->available_money=$user->available_money-$request['value'];
+    			$user->mattress_money=$user->mattress_money+$request['value'];
+    			$user->save();
+    			$transaction= new Transaction;
+    			$transaction->type=3;
+    			$transaction->value=$request['value'];
+    			$transaction->origin_user_id=$user->id;
+    			$transaction->save();
+    			return redirect()->route('home')->with('success','El dinero fue agregado al colchón Exitosamente!');
+    		}else{
+    			return redirect()->route('home')->with('error','No tiene fondos suficientes para esta transacción!');
+    		}
+    			
+    			break;
+    		case 'Retirar':
+				if ($request['value']<=$user->mattress_money) {
+					$user->mattress_money=$user->mattress_money-$request['value'];
+    				$user->available_money=$user->available_money+$request['value'];
+    				$transaction= new Transaction;
+	    			$transaction->type=4;
+	    			$transaction->value=$request['value'];
+	    			$transaction->origin_user_id=$user->id;
+	    			$transaction->save();
+    				$user->save();
+    			return redirect()->route('home')->with('success','El dinero fue retirado de tu colchon y ahora esta disponible!');
+    		}else{
+    			return redirect()->route('home')->with('error','No tiene fondos suficientes para esta transacción!');
+    		}
     			break;
     		
     		default:

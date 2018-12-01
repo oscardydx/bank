@@ -62,3 +62,52 @@
             </div>
 
 @endsection
+
+@section('content')
+
+<div class="row mt-5">
+        <div class="col-xl-8 mb-5 mb-xl-0">
+          <div class="card shadow">
+            <div class="card-header border-0">
+              <div class="row align-items-center">
+                <div class="col">
+                  <h3 class="mb-0">Historial de transacciones</h3>
+                </div>
+               
+              </div>
+            </div>
+            <div class="table-responsive">
+              <!-- Projects table -->
+              <table class="table align-items-center table-flush">
+                <thead class="thead-light">
+                  <tr>
+                    <th scope="col">Fecha</th>
+                    <th scope="col">Tipo</th>
+                    <th scope="col">Valor</th>
+                    <th scope="col">Nota</th>
+                  </tr>
+                </thead>
+                            <tbody>
+                      @foreach($transactions as $transaction)
+                      <tr >
+                      
+                      <td>{{ $transaction->created_at }}</td>
+                      <td>{{ $transaction->type}}</td>
+                      <td>{{ $transaction->value }}</td>
+                      <td></td>
+                      
+
+                    </tr>
+                  @endforeach
+            
+                </tbody>
+              </table>
+              {!! $transactions->render() !!}
+            </div>
+          </div>
+        </div>
+    
+      </div>
+  
+
+@endsection
