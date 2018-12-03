@@ -32,14 +32,16 @@ class PocketController extends Controller
         $pocket->state=1;
         $pocket->available_money=0;
         $pocket->save();
-        return redirect()->route('home')->with('success','Bolsillo creado satisfactoriamente!');      
+        return redirect()->route('pocketsHome')->with('success','Bolsillo creado satisfactoriamente!');      
     }
     public function addRequest( $id )
-    {   $user= Auth::user();
+    {   
+        $user= Auth::user();
         
             }
     public function pocketTransaction( Request $request )
-    {       $user= Auth::user();
+    {       
+        $user= Auth::user();
 
             if (isset($request['delete'])) {
                 $user= Auth::user();
@@ -53,10 +55,10 @@ class PocketController extends Controller
                 $pocket->save();
                 $transaction= new Transaction;
                 $transaction->type_id=6;
-                $transaction->value=$request['value'];
+                $transaction->value=$pocket->available_money;
                 $transaction->origin_user_id=$user->id;
                 $transaction->save();
-                return redirect()->route('home')->with('error','Bolsillo eliminado satisfactoriamente!');
+                return redirect()->route('pocketsHome')->with('error','Bolsillo eliminado satisfactoriamente!');
             }
 
             elseif (isset($request['add'])) {
@@ -77,10 +79,10 @@ class PocketController extends Controller
                     $transaction->value=$request['value'];
                     $transaction->origin_user_id=$user->id;
                     $transaction->save();
-                    return redirect()->route('home')->with('success','Bolsillo recargado satisfactoriamente!');
+                    return redirect()->route('pocketsHome')->with('success','Bolsillo recargado satisfactoriamente!');
 
                 }else{
-                    return redirect()->route('home')->with('error','Dinero disponible no suficiente para la transacción');
+                    return redirect()->route('pocketsHome')->with('error','Dinero disponible no suficiente para la transacción');
                 }
                            }
                elseif ($request['remove']) {
@@ -100,9 +102,9 @@ class PocketController extends Controller
                         $transaction->value=$request['value'];
                         $transaction->origin_user_id=$user->id;
                         $transaction->save();
-                        return redirect()->route('home')->with('success','Bolsillo recargado satisfactoriamente!');
+                        return redirect()->route('pocketsHome')->with('success','Bolsillo recargado satisfactoriamente!');
                     }else{
-                        return redirect()->route('home')->with('error','Monto de dinero no disponible!');
+                        return redirect()->route('pocketsHome')->with('error','Monto de dinero no disponible!');
                     }
 
                     
@@ -117,7 +119,7 @@ class PocketController extends Controller
                     $pocket=$pocket->find($request['pocketId']);
                 if ($destinationUser!=null && $pocket->available_money>=$request['value']) {
                     $destinationUser->available_money=$destinationUser->available_money+$request['value'];
-                    $pocket->available_money=$user->available_money-$request['value'];
+                    $pocket->available_money=$pocket->available_money-$request['value'];
                     $pocket->save();
                     $destinationUser->save();
                     $transaction= new Transaction;
@@ -129,12 +131,12 @@ class PocketController extends Controller
                     $beneficiary->transaction_id=$transaction->id;
                     $beneficiary->user_id=$destinationUser->id;
                     $beneficiary->save();
-                    return redirect()->route('home')->with('success','El dinero fue enviado Exitosamente!');
+                    return redirect()->route('pocketsHome')->with('success','El dinero fue enviado Exitosamente!');
 
                 }elseif ($destinationUser==null) {
-                    return redirect()->route('home')->with('error','Usuario de destino no encontrado!');
+                    return redirect()->route('pocketsHome')->with('error','Usuario de destino no encontrado!');
                 }elseif ($destinationUser!=null && $pocket->available_money<$request['value']) {
-                    return redirect()->route('home')->with('error','Fondos insuficientes!');
+                    return redirect()->route('pocketsHome')->with('error','Fondos insuficientes!');
                 }
                }
                 

@@ -14,4 +14,7 @@ class Beneficiary extends Model
     {
         return $this->belongsTo('App\Transaction');
     }
+
+    public function user(){
+    	return $this->belongsTo('App\User');}
 }

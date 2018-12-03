@@ -66,7 +66,7 @@
 @section('content')
 
 <div class="row mt-5">
-        <div class="col-xl-8 mb-5 mb-xl-0">
+        <div class="col-xl-9 mb-7 mb-xl-6">
           <div class="card shadow">
             <div class="card-header border-0">
               <div class="row align-items-center">
@@ -93,8 +93,12 @@
                       
                       <td>{{ $transaction->created_at }}</td>
                       <td>{{ $transaction->type->name}}</td>
-                      <td>{{ $transaction->value }}</td>
-                      <td>{{ $transaction->value }}</td>
+                      <td>{{ '$'.$transaction->value }}</td>
+                      <td>@if(isset($transaction->beneficiary )) 
+                        {{ "Beneficiario:".$transaction->beneficiary->user->email }}
+                        @endif
+                      
+                    </td>
                       
 
                     </tr>

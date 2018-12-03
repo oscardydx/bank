@@ -27,7 +27,7 @@ class HomeController extends Controller
     {   
         $user= Auth::user();
         $transactions= new Transaction;
-        $transactions=$transactions->where('origin_user_id',$user->id)->orderBy('id','ASC')->paginate(5);
+        $transactions=$transactions->where('origin_user_id',$user->id)->orderBy('id','DSC')->paginate(5);
 
         return view('board.dashboard')->with(['user'=>$user,'transactions'=>$transactions]);
     }
