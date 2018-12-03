@@ -15,6 +15,9 @@ Paso 5: Importar los datos necesarios a la tabla types la cual contiene informac
 
 INSERT INTO types (id, name, created_at, updated_at) VALUES (1, 'Recarga', NULL, NULL), (2, 'Envio', NULL, NULL), (3, 'Agregar a Colchon', NULL, NULL), (4, 'Retirar del colchon', NULL, NULL), (5, 'Agregar a Bolsillo', NULL, NULL), (6, 'Eliminar Bolsillo', NULL, NULL), (7, 'Retirar de bolsillo', NULL, NULL), (8, 'Envio desde bolsillo', NULL, NULL);
 
+si es necesario generar una nueva llave publica la genera con el comando 
+php artisan key:generate
+
 Paso 6: Registrar usuario en la ubicación bank/public y disfrutar el programa.
 
 
