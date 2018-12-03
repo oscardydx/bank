@@ -64,10 +64,15 @@
                       
                       <td>{{ $pocket->name }}</td>
                       <td>{{ $pocket->available_money}}</td>
-                      <td><a href="{{ route('home', $pocket->id) }}"  class="btn btn-danger"><i class="far fa-trash-alt"></i></a> 
-          <a href="#" class="btn btn-warning"><i class="fas fa-pencil-alt"></i> Agregar</a>
-          <a href="#" class="btn btn-warning"><i class="fas fa-pencil-alt"></i> Enviar</a>
-          <a href="#" class="btn btn-warning"><i class="fas fa-pencil-alt"></i> Retirar</a></td>
+                        <td> <form method="POST" action={{  action('PocketController@pocketTransaction')}}>
+                        {{ csrf_field() }}
+                        <button name="delete" type="submit"  value={{ $pocket->id  }} class="btn btn-sm btn-danger float-left"><i class="far fa-trash-alt"></i>Eliminar</button>
+                        <button name="add" type="submit"  value={{ $pocket->id  }} class="btn btn-sm btn-danger float-left">Agregar</button>
+                        <button name="remove" type="submit"  value={{ $pocket->id  }} class="btn btn-sm btn-danger float-left">Retirar</button>
+                        <button name="send" type="submit"  value={{ $pocket->id  }} class="btn btn-sm btn-danger float-left">Enviar</button>
+                        </form>
+
+                      </td>
                       
                       
 

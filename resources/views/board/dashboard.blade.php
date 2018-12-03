@@ -92,9 +92,9 @@
                       <tr >
                       
                       <td>{{ $transaction->created_at }}</td>
-                      <td>{{ $transaction->type}}</td>
+                      <td>{{ $transaction->type->name}}</td>
                       <td>{{ $transaction->value }}</td>
-                      <td></td>
+                      <td>{{ $transaction->value }}</td>
                       
 
                     </tr>

@@ -24,3 +24,4 @@ Route::post('transaction', 'AccountController@transactionRequest');
 Route::post('startTransaction', 'AccountController@startTransaction');
 Route::get('/goalsHome', 'GoalController@index')->name('goalsHome');
 Route::post('createPocket', 'PocketController@create');
+Route::post('deletePocket', 'PocketController@pocketTransaction');

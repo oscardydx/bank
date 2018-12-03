@@ -58,7 +58,7 @@ class AccountController extends Controller
     				$user->save();
     				$destinationUser->save();
     				$transaction= new Transaction;
-    				$transaction->type=2;
+    				$transaction->type_id=2;
     				$transaction->value=$request['value'];
     				$transaction->origin_user_id=$user->id;
     				$transaction->save();
@@ -80,7 +80,7 @@ class AccountController extends Controller
     			$user->available_money=$user->available_money+$request['value'];
     			$user->save();
     			$transaction= new Transaction;
-    			$transaction->type=1;
+    			$transaction->type_id=1;
     			$transaction->value=$request['value'];
     			$transaction->origin_user_id=$user->id;
     			$transaction->save();
@@ -94,7 +94,7 @@ class AccountController extends Controller
     			$user->mattress_money=$user->mattress_money+$request['value'];
     			$user->save();
     			$transaction= new Transaction;
-    			$transaction->type=3;
+    			$transaction->type_id=3;
     			$transaction->value=$request['value'];
     			$transaction->origin_user_id=$user->id;
     			$transaction->save();
@@ -109,7 +109,7 @@ class AccountController extends Controller
 					$user->mattress_money=$user->mattress_money-$request['value'];
     				$user->available_money=$user->available_money+$request['value'];
     				$transaction= new Transaction;
-	    			$transaction->type=4;
+	    			$transaction->type_id=4;
 	    			$transaction->value=$request['value'];
 	    			$transaction->origin_user_id=$user->id;
 	    			$transaction->save();
