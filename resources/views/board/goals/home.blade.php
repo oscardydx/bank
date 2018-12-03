@@ -87,8 +87,8 @@
                         {{ csrf_field() }}
                         <button name="delete" type="submit"  value={{ $goal->id  }} class="btn btn-sm btn-danger float-left"><i class="far fa-trash-alt"></i>Eliminar</button>
                         <button name="add" type="submit"  value={{ $goal->id  }} class="btn btn-sm btn-danger float-left">Agregar</button>
-                        <button name="remove" type="submit"  value={{ $goal->id  }} class="btn btn-sm btn-danger float-left">Retirar</button>
-                        <button name="send" type="submit"  value={{ $goal->id  }} class="btn btn-sm btn-danger float-left">Enviar</button>
+                        
+                        
                         </form>
 
                       </td>

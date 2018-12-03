@@ -1,33 +1,23 @@
-Proyecto se puede probar registrandose libremente en el dominio web https://asistente.xyz/bank/public. 
+Proyecto se puede probar registrandose libremente en el dominio web https://asistente.xyz/bank/public.
 
 Instalación:
 
-Paso 1: clonar repositorio en carpeta de servidor con herramientas php, mysql y composer disponible
-            https://github.com/oscardydx/bank.git        
+Paso 1: clonar repositorio en carpeta de servidor con herramientas php, mysql y composer disponible https://github.com/oscardydx/bank.git
 
-Paso 2: Ubicarse en la carpeta bank descargada desde Github he instalar las librerias laravel con la herramienta composer y el comando 
+Paso 2: Ubicarse en la carpeta bank descargada desde Github he instalar las librerias laravel con la herramienta composer y el comando
 
-    composer install
-
+composer install
 Paso 3: crear el archivo .env y reemplazar con los datos de la conexión a la base de datos
 
-Paso 4: ubicado dentro de la carpeta bank crear la migración de bases de datos mysql con el comando:
-      php artisan migrate:fresh
-    
+Paso 4: ubicado dentro de la carpeta bank crear la migración de bases de datos mysql con el comando: php artisan migrate:fresh
+
 Paso 5: Importar los datos necesarios a la tabla types la cual contiene información sobre el nombre de las transacciones posibles con las siguientes comandos ejecutables mysql:
 
-
-INSERT INTO `types` (`id`, `name`, `created_at`, `updated_at`) VALUES
-	(1, 'Recarga', NULL, NULL),
-	(2, 'Envio', NULL, NULL),
-	(3, 'Agregar a Colchon', NULL, NULL),
-	(4, 'Retirar del colchon', NULL, NULL),
-	(5, 'Agregar a Bolsillo', NULL, NULL),
-	(6, 'Eliminar Bolsillo', NULL, NULL),
-	(7, 'Retirar de bolsillo', NULL, NULL),
-	(8, 'Envio desde bolsillo', NULL, NULL);
+INSERT INTO types (id, name, created_at, updated_at) VALUES (1, 'Recarga', NULL, NULL), (2, 'Envio', NULL, NULL), (3, 'Agregar a Colchon', NULL, NULL), (4, 'Retirar del colchon', NULL, NULL), (5, 'Agregar a Bolsillo', NULL, NULL), (6, 'Eliminar Bolsillo', NULL, NULL), (7, 'Retirar de bolsillo', NULL, NULL), (8, 'Envio desde bolsillo', NULL, NULL);
 
 Paso 6: Registrar usuario en la ubicación bank/public y disfrutar el programa.
+
+
 
 
 
